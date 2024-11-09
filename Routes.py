@@ -330,3 +330,237 @@ def CreateCollection(libraryId, _library_api_key):
         }
     )
     return make_api_response(bunny_api_response, request.metadata)
+
+@require_library_api_key
+def GetVideo(libraryId, videoId, _library_api_key):
+    bunny_api_response = make_api_request(
+        url = f"https://video.bunnycdn.com/library/{libraryId}/videos/{videoId}",
+        method = str(request.method),
+        json = request.json,
+        headers = {
+            "AccessKey": _library_api_key
+        }
+    )
+    return make_api_response(bunny_api_response, request.metadata)
+
+@require_library_api_key
+def UpdateVideo(libraryId, videoId, _library_api_key):
+    bunny_api_response = make_api_request(
+        url = f"https://video.bunnycdn.com/library/{libraryId}/videos/{videoId}",
+        method = str(request.method),
+        json = request.json,
+        headers = {
+            "AccessKey": _library_api_key
+        }
+    )
+    return make_api_response(bunny_api_response, request.metadata)
+
+@require_library_api_key
+def DeleteVideo(libraryId, videoId, _library_api_key):
+    bunny_api_response = make_api_request(
+        url = f"https://video.bunnycdn.com/library/{libraryId}/videos/{videoId}",
+        method = str(request.method),
+        json = request.json,
+        headers = {
+            "AccessKey": _library_api_key
+        }
+    )
+    return make_api_response(bunny_api_response, request.metadata)
+
+@require_library_api_key
+def GetVideoHeatmap(libraryId, videoId, _library_api_key):
+    bunny_api_response = make_api_request(
+        url = f"https://video.bunnycdn.com/library/{libraryId}/videos/{videoId}/heatmap",
+        method = str(request.method),
+        json = request.json,
+        headers = {
+            "AccessKey": _library_api_key
+        }
+    )
+    return make_api_response(bunny_api_response, request.metadata)
+
+@require_library_api_key
+def GetVideoPlayData(libraryId, videoId, _library_api_key):
+    bunny_api_response = make_api_request(
+        url = f"https://video.bunnycdn.com/library/{libraryId}/videos/{videoId}/play",
+        method = str(request.method),
+        json = request.json,
+        headers = {
+            "AccessKey": _library_api_key
+        }
+    )
+    return make_api_response(bunny_api_response, request.metadata)
+
+@require_library_api_key
+def GetVideoStatistics(libraryId, _library_api_key):
+    if request.query_string.decode() != "":
+        query_string = f"?{request.query_string.decode()}"
+    else:
+        query_string = ""
+
+    bunny_api_response = make_api_request(
+        url = f"https://video.bunnycdn.com/library/{libraryId}/statistics" + query_string,
+        method = str(request.method),
+        json = request.json,
+        headers = {
+            "AccessKey": _library_api_key
+        }
+    )
+    return make_api_response(bunny_api_response, request.metadata)
+
+@require_library_api_key
+def ReencodeVideo(libraryId, videoId, _library_api_key):
+    bunny_api_response = make_api_request(
+        url = f"https://video.bunnycdn.com/library/{libraryId}/videos/{videoId}/reencode",
+        method = str(request.method),
+        json = request.json,
+        headers = {
+            "AccessKey": _library_api_key
+        }
+    )
+    return make_api_response(bunny_api_response, request.metadata)
+
+@require_library_api_key
+def RepackageVideo(libraryId, videoId, _library_api_key):
+    if request.query_string.decode() != "":
+        query_string = f"?{request.query_string.decode()}"
+    else:
+        query_string = ""
+    
+    bunny_api_response = make_api_request(
+        url = f"https://video.bunnycdn.com/library/{libraryId}/videos/{videoId}/repackage" + query_string,
+        method = str(request.method),
+        json = request.json,
+        headers = {
+            "AccessKey": _library_api_key
+        }
+    )
+    return make_api_response(bunny_api_response, request.metadata)
+
+@require_library_api_key
+def ListVideos(libraryId, _library_api_key):
+    if request.query_string.decode() != "":
+        query_string = f"?{request.query_string.decode()}"
+    else:
+        query_string = ""
+    
+    bunny_api_response = make_api_request(
+        url = f"https://video.bunnycdn.com/library/{libraryId}/videos" + query_string,
+        method = str(request.method),
+        json = request.json,
+        headers = {
+            "AccessKey": _library_api_key
+        }
+    )
+    return make_api_response(bunny_api_response, request.metadata)
+
+@require_library_api_key
+def CreateVideo(libraryId, _library_api_key):
+    bunny_api_response = make_api_request(
+        url = f"https://video.bunnycdn.com/library/{libraryId}/videos",
+        method = str(request.method),
+        json = request.json,
+        headers = {
+            "AccessKey": _library_api_key
+        }
+    )
+    return make_api_response(bunny_api_response, request.metadata)
+
+@require_library_api_key
+def SetThumbnail(libraryId, videoId, _library_api_key):
+    if request.query_string.decode() != "":
+        query_string = f"?{request.query_string.decode()}"
+    else:
+        query_string = ""
+    
+    bunny_api_response = make_api_request(
+        url = f"https://video.bunnycdn.com/library/{libraryId}/videos/{videoId}/thumbnail" + query_string,
+        method = str(request.method),
+        json = request.json,
+        headers = {
+            "AccessKey": _library_api_key
+        }
+    )
+    return make_api_response(bunny_api_response, request.metadata)
+
+@require_library_api_key
+def FetchVideo(libraryId, _library_api_key):
+    if request.query_string.decode() != "":
+        query_string = f"?{request.query_string.decode()}"
+    else:
+        query_string = ""
+    
+    bunny_api_response = make_api_request(
+        url = f"https://video.bunnycdn.com/library/{libraryId}/videos/fetch" + query_string,
+        method = str(request.method),
+        json = request.json,
+        headers = {
+            "AccessKey": _library_api_key
+        }
+    )
+    return make_api_response(bunny_api_response, request.metadata)
+
+@require_library_api_key
+def AddCaption(libraryId, videoId, sourceLang, _library_api_key):
+    bunny_api_response = make_api_request(
+        url = f"https://video.bunnycdn.com/library/{libraryId}/videos/{videoId}/captions/{sourceLang}",
+        method = str(request.method),
+        json = request.json,
+        headers = {
+            "AccessKey": _library_api_key
+        }
+    )
+    return make_api_response(bunny_api_response, request.metadata)
+
+@require_library_api_key
+def DeleteCaption(libraryId, videoId, sourceLang, _library_api_key):
+    bunny_api_response = make_api_request(
+        url = f"https://video.bunnycdn.com/library/{libraryId}/videos/{videoId}/captions/{sourceLang}",
+        method = str(request.method),
+        json = request.json,
+        headers = {
+            "AccessKey": _library_api_key
+        }
+    )
+    return make_api_response(bunny_api_response, request.metadata)
+
+@require_library_api_key
+def TranscribeVideo(libraryId, videoId, _library_api_key):
+    if request.query_string.decode() != "":
+        query_string = f"?{request.query_string.decode()}"
+    else:
+        query_string = ""
+    
+    bunny_api_response = make_api_request(
+        url = f"https://video.bunnycdn.com/library/{libraryId}/videos/{videoId}/transcribe" + query_string,
+        method = str(request.method),
+        json = request.json,
+        headers = {
+            "AccessKey": _library_api_key
+        }
+    )
+    return make_api_response(bunny_api_response, request.metadata)
+
+@require_library_api_key
+def VideoResolutionInfo(libraryId, videoId, _library_api_key):
+    bunny_api_response = make_api_request(
+        url = f"https://video.bunnycdn.com/library/{libraryId}/videos/{videoId}/resolutions",
+        method = str(request.method),
+        json = request.json,
+        headers = {
+            "AccessKey": _library_api_key
+        }
+    )
+    return make_api_response(bunny_api_response, request.metadata)
+
+@require_library_api_key
+def CleanupUnconfiguredResolutions(libraryId, videoId, _library_api_key):
+    bunny_api_response = make_api_request(
+        url = f"https://video.bunnycdn.com/library/{libraryId}/videos/{videoId}/resolutions/cleanup",
+        method = str(request.method),
+        json = request.json,
+        headers = {
+            "AccessKey": _library_api_key
+        }
+    )
+    return make_api_response(bunny_api_response, request.metadata)

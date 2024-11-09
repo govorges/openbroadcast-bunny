@@ -350,6 +350,248 @@ api_routes = [
                 500: "Internal Server Error"
             }
         }
+    },
+    {
+        "rule": "/library/<libraryId>/videos/<videoId>",
+        "methods": ["GET"],
+        "view_func": Routes.GetVideo,
+        "metadata": {
+            "description": "Get Video",
+            "responses": {
+                200: Routes.RESPONSEDATA,
+                401: "The request authorization failed",
+                404: "The requested video does not exist",
+                500: "Internal Server Error"
+            }
+        }
+    },
+    {
+        "rule": "/library/<libraryId>/videos/<videoId>",
+        "methods": ["POST"],
+        "view_func": Routes.UpdateVideo,
+        "metadata": {
+            "description": "Update Video",
+            "responses": {
+                200: Routes.RESPONSEDATA,
+                401: "The request authorization failed",
+                404: "The requested video does not exist",
+                500: "Internal Server Error"
+            }
+        }
+    },
+    {
+        "rule": "/library/<libraryId>/videos/<videoId>",
+        "methods": ["DELETE"],
+        "view_func": Routes.DeleteVideo,
+        "metadata": {
+            "description": "Delete Video",
+            "responses": {
+                200: Routes.RESPONSEDATA,
+                401: "The request authorization failed",
+                404: "The requested video does not exist",
+                500: "Internal Server Error"
+            }
+        }
+    },
+    {
+        "rule": "/library/<libraryId>/videos/<videoId>/heatmap",
+        "methods": ["GET"],
+        "view_func": Routes.GetVideoHeatmap,
+        "metadata": {
+            "description": "Get Video Heatmap",
+            "responses": {
+                200: Routes.RESPONSEDATA,
+                401: "The request authorization failed",
+                404: "The requested video does not exist",
+                500: "Internal Server Error"
+            }
+        }
+    },
+    {
+        "rule": "/library/<libraryId>/videos/<videoId>/play",
+        "methods": ["GET"],
+        "view_func": Routes.GetVideoPlayData,
+        "metadata": {
+            "description": "Get Video play data",
+            "responses": {
+                200: Routes.RESPONSEDATA,
+                401: "The request authorization failed",
+                404: "The requested video does not exist",
+                500: "Internal Server Error"
+            }
+        }
+    },
+    {
+        "rule": "/library/<libraryId>/statistics",
+        "methods": ["GET"],
+        "view_func": Routes.GetVideoPlayData,
+        "metadata": {
+            "description": "Get Video play data",
+            "responses": {
+                200: Routes.RESPONSEDATA,
+                401: "The request authorization failed",
+                404: "The requested video does not exist",
+                500: "Internal Server Error"
+            }
+        }
+    },
+    {
+        "rule": "/library/<libraryId>/videos/<videoId>/reencode",
+        "methods": ["POST"],
+        "view_func": Routes.ReencodeVideo,
+        "metadata": {
+            "description": "Reencode Video",
+            "responses": {
+                200: Routes.RESPONSEDATA,
+                400: Routes.RESPONSEDATA,
+                401: "The request authorization failed",
+                404: "The requested video was not found",
+                500: "Internal Server Error"
+            }
+        }
+    },
+    {
+        "rule": "/library/<libraryId>/videos/<videoId>/repackage",
+        "methods": ["POST"],
+        "view_func": Routes.RepackageVideo,
+        "metadata": {
+            "description": "Repackage Video",
+            "responses": {
+                200: Routes.RESPONSEDATA,
+                400: Routes.RESPONSEDATA,
+                401: "The request authorization failed",
+                404: "The requested video was not found",
+                500: "Internal Server Error"
+            }
+        }
+    },
+    {
+        "rule": "/library/<libraryId>/videos",
+        "methods": ["GET"],
+        "view_func": Routes.ListVideos,
+        "metadata": {
+            "description": "List Videos",
+            "responses": {
+                200: Routes.RESPONSEDATA,
+                401: "The request authorization failed",
+                500: "Internal Server Error"
+            }
+        }
+    },
+    {
+        "rule": "/library/<libraryId>/videos",
+        "methods": ["POST"],
+        "view_func": Routes.CreateVideo,
+        "metadata": {
+            "description": "Create Video",
+            "responses": {
+                200: Routes.RESPONSEDATA,
+                401: "The request authorization failed",
+                500: "Internal Server Error"
+            }
+        }
+    },
+    {
+        "rule": "/library/<libraryId>/videos/<videoId>/thumbnail",
+        "methods": ['POST'],
+        "view_func": Routes.SetThumbnail,
+        "metadata": {
+            "description": "Set Thumbnail",
+            "responses": {
+                200: Routes.RESPONSEDATA,
+                401: "The request authorization failed",
+                404: "The requested video was not found",
+                500: "Internal Server Error"
+            }
+        }
+    },
+    {
+        "rule": "/library/<libraryId>/videos/fetch",
+        "methods": ["POST"],
+        "view_func": Routes.FetchVideo,
+        "metadata": {
+            "description": "Fetch Video",
+            "responses": {
+                200: Routes.RESPONSEDATA,
+                400: Routes.RESPONSEDATA,
+                401: "The request authorization failed",
+                404: "The requested video was not found",
+                500: "Internal Server Error"
+            }
+        }
+    },
+    {
+        "rule": "/library/<libraryId>/videos/<videoId>/captions/<sourceLang>",
+        "methods": ["POST"],
+        "view_func": Routes.AddCaption,
+        "metadata": {
+            "description": "Add Caption",
+            "responses": {
+                200: Routes.RESPONSEDATA,
+                400: "Failed adding captions",
+                401: "The request authorization failed",
+                404: "The requested video was not found",
+                500: "Internal Server Error"
+            }
+        }
+    },
+    {
+        "rule": "/library/<libraryId>/videos/<videoId>/captions/<sourceLang>",
+        "methods": ["DELETE"],
+        "view_func": Routes.DeleteCaption,
+        "metadata": {
+            "description": "Delete Caption",
+            "responses": {
+                200: Routes.RESPONSEDATA,
+                400: "Failed deleting captions",
+                401: "The request authorization failed",
+                404: "The requested video was not found",
+                500: "Internal Server Error"
+            }
+        }
+    },
+    {
+        "rule": "/library/<libraryId>/videos/<videoId>/transcribe",
+        "methods": ["POST"],
+        "view_func": Routes.TranscribeVideo,
+        "metadata": {
+            "description": "Transcribe Video",
+            "responses": {
+                200: Routes.RESPONSEDATA,
+                400: "Invalid request for transcription queue",
+                401: "The request authorization failed",
+                404: "The requested video was not found",
+                500: "Internal Server Error"
+            }
+        }
+    },
+    {
+        "rule": "/library/<libraryId>/videos/<videoId>/resolutions",
+        "methods": ["GET"],
+        "view_func": Routes.VideoResolutionInfo,
+        "metadata": {
+            "description": "Video resolutions info",
+            "responses": {
+                200: Routes.RESPONSEDATA,
+                401: "The request authorization failed",
+                404: "The requested video was not found",
+                500: "Internal Server Error"
+            }
+        }
+    },
+    {
+        "rule": "/library/<libraryId>/videos/<videoId>/resolutions/cleanup",
+        "methods": ["POST"],
+        "view_func": Routes.CleanupUnconfiguredResolutions,
+        "metadata": {
+            "description": "Cleanup unconfigured resolutions",
+            "responses": {
+                200: Routes.RESPONSEDATA,
+                401: "The request authorization failed",
+                404: "The requested video was not found",
+                500: "Internal Server Error"
+            }
+        }
     }
 ]
 
