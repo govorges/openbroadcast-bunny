@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 import Routes
 
 api = Flask(__name__)
@@ -595,16 +595,28 @@ api_routes = [
     }
 ]
 
+@api.route('/status', endpoint='application_status')
+@api.route('/', endpoint='application_status')
+def application_status():
+    '''
+    Route for application status checks. 
+    This is here instead of `Routes.py` as it's not a route linked to a Bunny API function.
+    '''
+    return jsonify({
+        "service_status": 200,
+        "bunny_status": Routes.get_bunny_api_status()
+    })
+
 @api.before_request
 def apply_request_metadata_context():
     path_routes = [route for route in api_routes if route['rule'] == str(request.url_rule)]
     route = [route for route in path_routes if request.method in route['methods']]
     
-    if len(route) != 1: 
+    if len(route) > 1:
         raise Exception("Multiple routes found in api_routes for given rule and method")
-    route = route[0]
-
-    request.metadata = route['metadata']
+    elif len(route) == 1:
+        route = route[0]
+        request.metadata = route.get('metadata')
 
 for route in api_routes:
     rule = route.copy() # This is *not* a reference to the item in api_routes.

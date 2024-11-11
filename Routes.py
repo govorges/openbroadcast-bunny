@@ -25,6 +25,13 @@ class RESPONSEDATA:
     def __init__(self) -> None:
         return None
 
+def get_bunny_api_status() -> int:
+    '''Returns the status code of a GET request to https://api.bunny.net'''
+    bunny_api_response: requests.Response = make_api_request(
+        url = "https://api.bunny.net",
+        method = "GET"
+    )
+    return bunny_api_response.status_code
 
 def retrieve_library_api_key(libraryId: str):
     '''Retrieves the API key specific to the given Library'''
