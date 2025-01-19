@@ -592,6 +592,17 @@ api_routes = [
                 500: "Internal Server Error"
             }
         }
+    },
+    {
+        "rule": "/library/<libraryId>/videos/<videoId>/create_upload_signature",
+        "methods": ["GET"],
+        "view_func": Routes.CreateUploadSignature,
+        "metadata": {
+            "description": "Creates a TUS upload signature for presigned video uploads",
+            "responses": {
+                200: Routes.RESPONSEDATA
+            }
+        }
     }
 ]
 

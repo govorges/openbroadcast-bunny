@@ -6,6 +6,9 @@ from flask import request, make_response, jsonify
 from os import environ
 from dotenv import load_dotenv
 
+import datetime
+import hashlib
+
 load_dotenv(".env")
 ACCOUNT_API_KEY = environ.get('BUNNY_ACCOUNT_KEY')
 if ACCOUNT_API_KEY is None:
@@ -571,3 +574,15 @@ def CleanupUnconfiguredResolutions(libraryId, videoId, _library_api_key):
         }
     )
     return make_api_response(bunny_api_response, request.metadata)
+
+@require_library_api_key
+def CreateUploadSignature(libraryId, videoId, _library_api_key):
+    expiration = (datetime.datetime.now() + datetime.timedelta(hours=2))
+    expiration = int(expiration.timestamp())
+
+    signature = hashlib.sha256(libraryId, _library_api_key, expiration, videoId)
+
+    return jsonify({
+        "signature": signature,
+        "expiration": expiration
+    })
