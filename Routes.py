@@ -580,9 +580,11 @@ def CreateUploadSignature(libraryId, videoId, _library_api_key):
     expiration = (datetime.datetime.now() + datetime.timedelta(hours=2))
     expiration = int(expiration.timestamp())
 
-    signature = hashlib.sha256(libraryId, _library_api_key, expiration, videoId)
+    signature = hashlib.sha256(
+        (str(libraryId) + str(_library_api_key) + str(expiration) + str(videoId)).encode()
+    )
 
     return jsonify({
-        "signature": signature,
+        "signature": signature.hexdigest(),
         "expiration": expiration
     })
