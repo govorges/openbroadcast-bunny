@@ -65,6 +65,7 @@ def require_library_api_key(func):
     return wrapper
 
 def make_api_request(url: str, method: str, data = None, json = None, headers = None):
+    """Makes a request to Bunny's API, autofilling required structural headers (These can be overridden by manually specifying them in the `headers` parameter.)"""
     request_headers = {
         "AccessKey": ACCOUNT_API_KEY,
         "accept": "application/json"
@@ -80,6 +81,7 @@ def make_api_request(url: str, method: str, data = None, json = None, headers = 
     return response
 
 def make_api_response(bunny_response: requests.Response, metadata: dict):
+    """Makes a response for *this* API, using the route's defined response metadata & a Bunny API response to construct it properly."""
     route_response = metadata['responses'].get(
         bunny_response.status_code, "Unknown response code."
     )
